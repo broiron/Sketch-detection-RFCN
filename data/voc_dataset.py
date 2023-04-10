@@ -6,7 +6,8 @@ from utils.img_processing import read_image
 
 
 class VOCDataset(Dataset):
-    CLASS_NAME = (
+    '''
+	CLASS_NAME = (
         'aeroplane',
         'bicycle',
         'bird',
@@ -27,9 +28,12 @@ class VOCDataset(Dataset):
         'sofa',
         'train',
         'tvmonitor')
+	'''
+    CLASS_NAME= ('line', 'triangle', 'rectangle', 'pentagon', 'background')
 
     def __init__(self, root_dir,
-                 split='trainval',
+                 #split='trainval',
+                 split='default',
                  use_difficult=False,
                  return_difficult=False):
         self.root_dir = root_dir
@@ -71,10 +75,10 @@ class VOCDataset(Dataset):
             t_difficult.append(int(obj.find('difficult').text))
 
             box = obj.find('bndbox')
-            y_min = int(box.find('ymin').text) - 1  # subtract 1 to make pixel indexes 0-based
-            x_min = int(box.find('xmin').text) - 1
-            y_max = int(box.find('ymax').text) - 1
-            x_max = int(box.find('xmax').text) - 1
+            y_min = int(float(box.find('ymin').text)) - 1  # subtract 1 to make pixel indexes 0-based
+            x_min = int(float(box.find('xmin').text)) - 1
+            y_max = int(float(box.find('ymax').text)) - 1
+            x_max = int(float(box.find('xmax').text)) - 1
             t_bboxes.append([y_min, x_min, y_max, x_max])
 
         t_labels = np.stack(t_labels).astype(np.int32)

@@ -6,7 +6,7 @@ import time
 # matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-
+'''
 VOC_BBOX_LABEL_NAMES = (
     'fly',
     'bike',
@@ -29,7 +29,8 @@ VOC_BBOX_LABEL_NAMES = (
     'train',
     'tv',
 )
-
+'''
+VOC_BBOX_LABEL_NAMES = ('line', 'background')
 
 
 

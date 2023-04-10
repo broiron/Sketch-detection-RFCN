@@ -79,7 +79,7 @@ class Transform(object):
 
 class TrainDataset(Dataset):
     def __init__(self):
-        self.db = VOCDataset(opt.voc07_data_dir)
+        self.db = VOCDataset(opt.voc07_data_dir, split='train')
         self.tsf = Transform(opt.min_size, opt.max_size)
 
     def __getitem__(self, idx):
@@ -94,10 +94,12 @@ class TrainDataset(Dataset):
 
 
 class TestDataset(Dataset):
-    def __init__(self, split='test', use_difficult=True):
-        self.db = VOCDataset(opt.voc07_data_dir,
-                             split=split,
-                             use_difficult=use_difficult)
+    def __init__(self, split='test', use_difficult=True,
+	             root_dir='/home/broiron/broiron/line_dataset_vol1_pascal_test'):
+        #self.db = VOCDataset(opt.voc07_data_dir,
+                             #split=split,
+        #                     use_difficult=use_difficult)
+        self.db = VOCDataset(opt.voc07_data_dir, split=split, use_difficult=use_difficult)
 
     def __getitem__(self, idx):
         ori_img, bbox, label, difficult = self.db.get_example(idx)

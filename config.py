@@ -4,8 +4,9 @@ from pprint import pprint
 class Config:
 
     # Dataset path
-    voc07_data_dir = '/home/elbert/datasets/VOC2007'
-    class_num = (1 + 20)   # num of classes
+    #voc07_data_dir = '/home/broiron/broiron/line_dataset_vol1_pascal_origin'
+    voc07_data_dir = '/home/broiron/broiron/line_dataset_vol5'
+    class_num = (1 + 4)   # num of classes
 
     min_size = 600
     max_size = 1000

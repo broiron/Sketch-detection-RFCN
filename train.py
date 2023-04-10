@@ -102,7 +102,7 @@ def RFCN_train(**kwargs):
                                   num_workers=opt.num_workers,
                                   pin_memory=False)
 
-    test_db = TestDataset()
+    test_db = TestDataset(root_dir='/home/broiron/broiron/line_dataset_vol1_pascal_test')
     if opt.test_num < len(test_db):
         test_db = torch.utils.data.Subset(test_db, indices=torch.arange(opt.test_num))
     test_dataloader = DataLoader(test_db,
